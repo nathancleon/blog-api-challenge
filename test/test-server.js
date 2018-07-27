@@ -51,7 +51,7 @@ describe("Blog Posts", function() {
       .post("/blog-posts")
       .send(newPost)
       .then(function(res) {
-        expect(res).to.have.status(200);
+        expect(res).to.have.status(201);
         expect(res).to.be.json;
         expect(res.body).to.be.a("object");
         expect(res.body).to.have.all.keys(expectedKeys);
@@ -62,11 +62,7 @@ describe("Blog Posts", function() {
   });
 
   it("should throw error if POST is missing values",function() {
-    const badRequestData = {
-      title: 3,
-      content: false,
-      author: []
-    };
+    const badRequestData = {};
     return chai
       .request(app)
       .post("/blog-posts")
